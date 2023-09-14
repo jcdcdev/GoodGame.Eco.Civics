@@ -1,11 +1,21 @@
 name: Create release
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types: [closed]
   workflow_dispatch:
 jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if main branch
+        run: |
+          if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
+            echo "This workflow can only be run on the main branch."
+            exit 1
+          fi
   determine-version:
     runs-on: ubuntu-latest
     outputs:
@@ -21,7 +31,6 @@ jobs:
       - name: Determine Version
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0
-
   build:
     name: build ${{ needs.determine-version.outputs.semVer }}
     runs-on: ubuntu-latest
@@ -71,7 +80,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
           filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*)'
-          custom-emoji: 'feature🌟'
+          custom-emoji: 'feature🌟,demographic👥,districtmap🗺️,electedtitle👑,electionprocess🗳️,constitution📜,govaccount🏦,law⚖️'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
   #     - name: Create Release
