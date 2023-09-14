@@ -1,0 +1,75 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Titles.ElectedTitle",
+  "name": "President",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "ElectionProcess": {
+      "type": "Eco.Gameplay.Civics.ElectionProcess",
+      "name": "Basic Election",
+      "reference": true
+    },
+    "EligibleCandidates": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Admins",
+      "reference": true
+    },
+    "RequiredOfCandidates": null,
+    "MaxOccupants": 3,
+    "Successor": null,
+    "WhoCanRemoveFromOffice": null,
+    "TermLimitDays": 0.0,
+    "TotalTermsAllowed": 0,
+    "ConsecutiveTermsAllowed": 0,
+    "CanElectionsBeProposedDuringTerm": true,
+    "CanSetGlobalMarkers": true,
+    "CanSetGlobalObjective": true,
+    "CanSetTreasuryTaxes": true,
+    "CanUseTreasuryBankAccount": true,
+    "HasGovernmentBankingPrivileges": true,
+    "RequiredOfOfficeHolders": {
+      "type": "Eco.Gameplay.Civics.GameValues.Values.IsAdmin",
+      "properties": {
+        "Citizen": {
+          "type": "GameValueContext",
+          "_name": "Citizen",
+          "markedUpName": "<icon name=\"User\">Citizen</icon>",
+          "contextDescription": "The candidate or office holder."
+        }
+      }
+    },
+    "BackupOwner": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Admins",
+      "reference": true
+    },
+    "Wages": {
+      "type": "Eco.Gameplay.Economy.Jobs.RecurringTransferDefinition",
+      "reference": false,
+      "properties": {
+        "Currency": {
+          "type": "GameValueWrapper",
+          "value": {
+            "type": "Eco.Gameplay.Economy.Currency",
+            "name": "Goodies",
+            "reference": true
+          }
+        },
+        "AmountPerHour": {
+          "type": "GameValueWrapper",
+          "value": 2.0
+        },
+        "PaymentType": "OnlineHours"
+      }
+    },
+    "WagesSourceBankAccount": {
+      "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+      "name": "Treasury Bank Account",
+      "reference": true
+    }
+  }
+}
