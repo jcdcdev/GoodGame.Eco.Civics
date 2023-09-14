@@ -1,0 +1,1555 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Laws.Law",
+  "name": "Quality Of Life Laws",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "Sections": [
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Fees for trees: I",
+          "UserDescription": "Cleaning up stumps ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.ChopStump"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.ChopStump",
+                    "propNameBacker": "Species",
+                    "propDisplayName": "Species",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Simulation.Types.TreeSpecies"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.ChopStump",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Logging",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "GameValueContext",
+                        "_name": "Destroyed",
+                        "markedUpName": "<icon name=\"ChopStump\">Destroyed</icon>",
+                        "contextDescription": "Was the stump destroyed?"
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Pay_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "SourceBankAccount": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+                          "name": "Treasury Bank Account",
+                          "reference": true
+                        }
+                      },
+                      "TargetBankAccount": {
+                        "type": "Eco.Gameplay.Civics.GameValues.PersonalBankAccount_GameValue",
+                        "properties": {
+                          "User": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who performed the interaction."
+                          }
+                        }
+                      },
+                      "Target": {
+                        "type": "GameValueContext",
+                        "_name": "Citizen",
+                        "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                        "contextDescription": "The citizen who performed the interaction."
+                      },
+                      "Currency": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.Currency",
+                          "name": "Goodies",
+                          "reference": true
+                        }
+                      },
+                      "Amount": {
+                        "type": "GameValueWrapper",
+                        "value": 1.5
+                      },
+                      "PreventIfUnableToPay": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      },
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Fees for trees: II",
+          "UserDescription": "Cleaning up debris",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.CleanupTreeDebris"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CleanupTreeDebris",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Logging",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Pay_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "SourceBankAccount": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+                          "name": "Treasury Bank Account",
+                          "reference": true
+                        }
+                      },
+                      "TargetBankAccount": {
+                        "type": "Eco.Gameplay.Civics.GameValues.PersonalBankAccount_GameValue",
+                        "properties": {
+                          "User": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who performed the interaction."
+                          }
+                        }
+                      },
+                      "Target": {
+                        "type": "GameValueContext",
+                        "_name": "Citizen",
+                        "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                        "contextDescription": "The citizen who performed the interaction."
+                      },
+                      "Currency": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.Currency",
+                          "name": "Goodies",
+                          "reference": true
+                        }
+                      },
+                      "Amount": {
+                        "type": "GameValueWrapper",
+                        "value": 0.25
+                      },
+                      "PreventIfUnableToPay": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      },
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Fees for trees: III",
+          "UserDescription": "Stumps can be chopped by anyone ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.ChopStump"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.ChopStump",
+                    "propNameBacker": "Species",
+                    "propDisplayName": "Species",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Simulation.Types.TreeSpecies"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.ChopStump",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Logging",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.OnOwnedLand",
+                        "properties": {}
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.IgnoreAuth_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Fees for trees: IV",
+          "UserDescription": "Debris can be cleaned up by anyone ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.CleanupTreeDebris"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CleanupTreeDebris",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Logging",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.OnOwnedLand",
+                        "properties": {}
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.IgnoreAuth_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Right to hunt: I",
+          "UserDescription": "Hunting allowed on all property ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.HarvestOrHunt"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.HarvestOrHunt",
+                    "propNameBacker": "Species",
+                    "propDisplayName": "Species",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Simulation.Types.Species"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "<foldout><linktext><u>27 Animals</u></linktext><title>27 Animals</title><link=\"view:2124:-1\"><icon name=\"AgoutiSpecies\"><color=#60FFFFFF>Agouti Species</color></icon></link>\r\n<link=\"view:1424:-1\"><icon name=\"AlligatorSpecies\"><color=#60FFFFFF>Alligator Species</color></icon></link>\r\n<link=\"view:4045:-1\"><icon name=\"BassSpecies\"><color=#60FFFFFF>Bass Species</color></icon></link>\r\n<link=\"view:4282:-1\"><icon name=\"BighornSheepSpecies\"><color=#60FFFFFF>Bighorn Sheep Species</color></icon></link>\r\n<link=\"view:580:-1\"><icon name=\"BisonSpecies\"><color=#60FFFFFF>Bison Species</color></icon></link>\r\n<link=\"view:131:-1\"><icon name=\"BlueSharkSpecies\"><color=#60FFFFFF>Blue Shark Species</color></icon></link>\r\n<link=\"view:3140:-1\"><icon name=\"CodSpecies\"><color=#60FFFFFF>Cod Species</color></icon></link>\r\n<link=\"view:850:-1\"><icon name=\"CoyoteSpecies\"><color=#60FFFFFF>Coyote Species</color></icon></link>\r\n<link=\"view:2408:-1\"><icon name=\"CrabSpecies\"><color=#60FFFFFF>Crab Species</color></icon></link>\r\n<link=\"view:3711:-1\"><icon name=\"DeerSpecies\"><color=#60FFFFFF>Deer Species</color></icon></link>\r\n<link=\"view:2481:-1\"><icon name=\"ElkSpecies\"><color=#60FFFFFF>Elk Species</color></icon></link>\r\n<link=\"view:3653:-1\"><icon name=\"FoxSpecies\"><color=#60FFFFFF>Fox Species</color></icon></link>\r\n<link=\"view:3098:-1\"><icon name=\"HareSpecies\"><color=#60FFFFFF>Hare Species</color></icon></link>\r\n<link=\"view:1846:-1\"><icon name=\"JaguarSpecies\"><color=#60FFFFFF>Jaguar Species</color></icon></link>\r\n<link=\"view:3870:-1\"><icon name=\"MoonJellyfishSpecies\"><color=#60FFFFFF>Moon Jellyfish Species</color></icon></link>\r\n<link=\"view:789:-1\"><icon name=\"MountainGoatSpecies\"><color=#60FFFFFF>Mountain Goat Species</color></icon></link>\r\n<link=\"view:122:-1\"><icon name=\"OtterSpecies\"><color=#60FFFFFF>Otter Species</color></icon></link>\r\n<link=\"view:54:-1\"><icon name=\"PacificSardineSpecies\"><color=#60FFFFFF>Pacific Sardine Species</color></icon></link>\r\n<link=\"view:2613:-1\"><icon name=\"PrairieDogSpecies\"><color=#60FFFFFF>Prairie Dog Species</color></icon></link>\r\n<link=\"view:810:-1\"><icon name=\"SalmonSpecies\"><color=#60FFFFFF>Salmon Species</color></icon></link>\r\n<link=\"view:1210:-1\"><icon name=\"SnappingTurtleSpecies\"><color=#60FFFFFF>Snapping Turtle Species</color></icon></link>\r\n<link=\"view:3788:-1\"><icon name=\"TarantulaSpecies\"><color=#60FFFFFF>Tarantula Species</color></icon></link>\r\n<link=\"view:221:-1\"><icon name=\"TortoiseSpecies\"><color=#60FFFFFF>Tortoise Species</color></icon></link>\r\n<link=\"view:2641:-1\"><icon name=\"TroutSpecies\"><color=#60FFFFFF>Trout Species</color></icon></link>\r\n<link=\"view:982:-1\"><icon name=\"TunaSpecies\"><color=#60FFFFFF>Tuna Species</color></icon></link>\r\n<link=\"view:1036:-1\"><icon name=\"TurkeySpecies\"><color=#60FFFFFF>Turkey Species</color></icon></link>\r\n<link=\"view:3190:-1\"><icon name=\"WolfSpecies\"><color=#60FFFFFF>Wolf Species</color></icon></link></foldout>",
+                        "entries": [
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.SnappingTurtle+SnappingTurtleSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Trout+TroutSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Tuna+TunaSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Tarantula+TarantulaSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Jaguar+JaguarSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BlueShark+BlueSharkSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Agouti+AgoutiSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Turkey+TurkeySpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MountainGoat+MountainGoatSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Wolf+WolfSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PacificSardine+PacificSardineSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Cod+CodSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BighornSheep+BighornSheepSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Fox+FoxSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.Organisms.Tortoise+TortoiseSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Elk+ElkSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PrairieDog+PrairieDogSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Hare+HareSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Deer+DeerSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Otter+OtterSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Alligator+AlligatorSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Coyote+CoyoteSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Crab+CrabSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Bison+BisonSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Salmon+SalmonSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MoonJellyfish+MoonJellyfishSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Bass+BassSpecies"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.HarvestOrHunt",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Harvester",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.OnOwnedLand",
+                        "properties": {}
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.IgnoreAuth_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Right to hunt: II",
+          "UserDescription": "Endangered speices protection law",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.HarvestOrHunt"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.HarvestOrHunt",
+                    "propNameBacker": "Species",
+                    "propDisplayName": "Species",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Simulation.Types.Species"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "<foldout><linktext><u>27 Animals</u></linktext><title>27 Animals</title><link=\"view:2124:-1\"><icon name=\"AgoutiSpecies\"><color=#60FFFFFF>Agouti Species</color></icon></link>\r\n<link=\"view:1424:-1\"><icon name=\"AlligatorSpecies\"><color=#60FFFFFF>Alligator Species</color></icon></link>\r\n<link=\"view:4045:-1\"><icon name=\"BassSpecies\"><color=#60FFFFFF>Bass Species</color></icon></link>\r\n<link=\"view:4282:-1\"><icon name=\"BighornSheepSpecies\"><color=#60FFFFFF>Bighorn Sheep Species</color></icon></link>\r\n<link=\"view:580:-1\"><icon name=\"BisonSpecies\"><color=#60FFFFFF>Bison Species</color></icon></link>\r\n<link=\"view:131:-1\"><icon name=\"BlueSharkSpecies\"><color=#60FFFFFF>Blue Shark Species</color></icon></link>\r\n<link=\"view:3140:-1\"><icon name=\"CodSpecies\"><color=#60FFFFFF>Cod Species</color></icon></link>\r\n<link=\"view:850:-1\"><icon name=\"CoyoteSpecies\"><color=#60FFFFFF>Coyote Species</color></icon></link>\r\n<link=\"view:2408:-1\"><icon name=\"CrabSpecies\"><color=#60FFFFFF>Crab Species</color></icon></link>\r\n<link=\"view:3711:-1\"><icon name=\"DeerSpecies\"><color=#60FFFFFF>Deer Species</color></icon></link>\r\n<link=\"view:2481:-1\"><icon name=\"ElkSpecies\"><color=#60FFFFFF>Elk Species</color></icon></link>\r\n<link=\"view:3653:-1\"><icon name=\"FoxSpecies\"><color=#60FFFFFF>Fox Species</color></icon></link>\r\n<link=\"view:3098:-1\"><icon name=\"HareSpecies\"><color=#60FFFFFF>Hare Species</color></icon></link>\r\n<link=\"view:1846:-1\"><icon name=\"JaguarSpecies\"><color=#60FFFFFF>Jaguar Species</color></icon></link>\r\n<link=\"view:3870:-1\"><icon name=\"MoonJellyfishSpecies\"><color=#60FFFFFF>Moon Jellyfish Species</color></icon></link>\r\n<link=\"view:789:-1\"><icon name=\"MountainGoatSpecies\"><color=#60FFFFFF>Mountain Goat Species</color></icon></link>\r\n<link=\"view:122:-1\"><icon name=\"OtterSpecies\"><color=#60FFFFFF>Otter Species</color></icon></link>\r\n<link=\"view:54:-1\"><icon name=\"PacificSardineSpecies\"><color=#60FFFFFF>Pacific Sardine Species</color></icon></link>\r\n<link=\"view:2613:-1\"><icon name=\"PrairieDogSpecies\"><color=#60FFFFFF>Prairie Dog Species</color></icon></link>\r\n<link=\"view:810:-1\"><icon name=\"SalmonSpecies\"><color=#60FFFFFF>Salmon Species</color></icon></link>\r\n<link=\"view:1210:-1\"><icon name=\"SnappingTurtleSpecies\"><color=#60FFFFFF>Snapping Turtle Species</color></icon></link>\r\n<link=\"view:3788:-1\"><icon name=\"TarantulaSpecies\"><color=#60FFFFFF>Tarantula Species</color></icon></link>\r\n<link=\"view:221:-1\"><icon name=\"TortoiseSpecies\"><color=#60FFFFFF>Tortoise Species</color></icon></link>\r\n<link=\"view:2641:-1\"><icon name=\"TroutSpecies\"><color=#60FFFFFF>Trout Species</color></icon></link>\r\n<link=\"view:982:-1\"><icon name=\"TunaSpecies\"><color=#60FFFFFF>Tuna Species</color></icon></link>\r\n<link=\"view:1036:-1\"><icon name=\"TurkeySpecies\"><color=#60FFFFFF>Turkey Species</color></icon></link>\r\n<link=\"view:3190:-1\"><icon name=\"WolfSpecies\"><color=#60FFFFFF>Wolf Species</color></icon></link></foldout>",
+                        "entries": [
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.SnappingTurtle+SnappingTurtleSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Trout+TroutSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Tuna+TunaSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Tarantula+TarantulaSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Jaguar+JaguarSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BlueShark+BlueSharkSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Agouti+AgoutiSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Turkey+TurkeySpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MountainGoat+MountainGoatSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Wolf+WolfSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PacificSardine+PacificSardineSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Cod+CodSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BighornSheep+BighornSheepSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Fox+FoxSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.Organisms.Tortoise+TortoiseSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Elk+ElkSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PrairieDog+PrairieDogSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Hare+HareSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Deer+DeerSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Otter+OtterSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Alligator+AlligatorSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Coyote+CoyoteSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Crab+CrabSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Bison+BisonSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Salmon+SalmonSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MoonJellyfish+MoonJellyfishSpecies"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.Bass+BassSpecies"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.HarvestOrHunt",
+                    "propNameBacker": "ToolUsed",
+                    "propDisplayName": "Tool Used",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Harvester",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Compare",
+                        "properties": {
+                          "Left": {
+                            "type": "Eco.Gameplay.Civics.GameValues.Population",
+                            "properties": {
+                              "SpeciesTypes": {
+                                "type": "GamePickerList",
+                                "mustDeriveType": {
+                                  "type": "Type",
+                                  "value": "Eco.Simulation.Types.Species"
+                                },
+                                "requiredTag": null,
+                                "internalDescription": "<foldout><linktext><u>27 Animals</u></linktext><title>27 Animals</title><link=\"view:2124:-1\"><icon name=\"AgoutiSpecies\"><color=#60FFFFFF>Agouti Species</color></icon></link>\r\n<link=\"view:1424:-1\"><icon name=\"AlligatorSpecies\"><color=#60FFFFFF>Alligator Species</color></icon></link>\r\n<link=\"view:4045:-1\"><icon name=\"BassSpecies\"><color=#60FFFFFF>Bass Species</color></icon></link>\r\n<link=\"view:4282:-1\"><icon name=\"BighornSheepSpecies\"><color=#60FFFFFF>Bighorn Sheep Species</color></icon></link>\r\n<link=\"view:580:-1\"><icon name=\"BisonSpecies\"><color=#60FFFFFF>Bison Species</color></icon></link>\r\n<link=\"view:131:-1\"><icon name=\"BlueSharkSpecies\"><color=#60FFFFFF>Blue Shark Species</color></icon></link>\r\n<link=\"view:3140:-1\"><icon name=\"CodSpecies\"><color=#60FFFFFF>Cod Species</color></icon></link>\r\n<link=\"view:850:-1\"><icon name=\"CoyoteSpecies\"><color=#60FFFFFF>Coyote Species</color></icon></link>\r\n<link=\"view:2408:-1\"><icon name=\"CrabSpecies\"><color=#60FFFFFF>Crab Species</color></icon></link>\r\n<link=\"view:3711:-1\"><icon name=\"DeerSpecies\"><color=#60FFFFFF>Deer Species</color></icon></link>\r\n<link=\"view:2481:-1\"><icon name=\"ElkSpecies\"><color=#60FFFFFF>Elk Species</color></icon></link>\r\n<link=\"view:3653:-1\"><icon name=\"FoxSpecies\"><color=#60FFFFFF>Fox Species</color></icon></link>\r\n<link=\"view:3098:-1\"><icon name=\"HareSpecies\"><color=#60FFFFFF>Hare Species</color></icon></link>\r\n<link=\"view:1846:-1\"><icon name=\"JaguarSpecies\"><color=#60FFFFFF>Jaguar Species</color></icon></link>\r\n<link=\"view:3870:-1\"><icon name=\"MoonJellyfishSpecies\"><color=#60FFFFFF>Moon Jellyfish Species</color></icon></link>\r\n<link=\"view:789:-1\"><icon name=\"MountainGoatSpecies\"><color=#60FFFFFF>Mountain Goat Species</color></icon></link>\r\n<link=\"view:122:-1\"><icon name=\"OtterSpecies\"><color=#60FFFFFF>Otter Species</color></icon></link>\r\n<link=\"view:54:-1\"><icon name=\"PacificSardineSpecies\"><color=#60FFFFFF>Pacific Sardine Species</color></icon></link>\r\n<link=\"view:2613:-1\"><icon name=\"PrairieDogSpecies\"><color=#60FFFFFF>Prairie Dog Species</color></icon></link>\r\n<link=\"view:810:-1\"><icon name=\"SalmonSpecies\"><color=#60FFFFFF>Salmon Species</color></icon></link>\r\n<link=\"view:1210:-1\"><icon name=\"SnappingTurtleSpecies\"><color=#60FFFFFF>Snapping Turtle Species</color></icon></link>\r\n<link=\"view:3788:-1\"><icon name=\"TarantulaSpecies\"><color=#60FFFFFF>Tarantula Species</color></icon></link>\r\n<link=\"view:221:-1\"><icon name=\"TortoiseSpecies\"><color=#60FFFFFF>Tortoise Species</color></icon></link>\r\n<link=\"view:2641:-1\"><icon name=\"TroutSpecies\"><color=#60FFFFFF>Trout Species</color></icon></link>\r\n<link=\"view:982:-1\"><icon name=\"TunaSpecies\"><color=#60FFFFFF>Tuna Species</color></icon></link>\r\n<link=\"view:1036:-1\"><icon name=\"TurkeySpecies\"><color=#60FFFFFF>Turkey Species</color></icon></link>\r\n<link=\"view:3190:-1\"><icon name=\"WolfSpecies\"><color=#60FFFFFF>Wolf Species</color></icon></link></foldout>",
+                                "entries": [
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.SnappingTurtle+SnappingTurtleSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Trout+TroutSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Tuna+TunaSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Tarantula+TarantulaSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Jaguar+JaguarSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.BlueShark+BlueSharkSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Agouti+AgoutiSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Turkey+TurkeySpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.MountainGoat+MountainGoatSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Wolf+WolfSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.PacificSardine+PacificSardineSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Cod+CodSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.BighornSheep+BighornSheepSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Fox+FoxSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.Organisms.Tortoise+TortoiseSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Elk+ElkSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.PrairieDog+PrairieDogSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Hare+HareSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Deer+DeerSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Otter+OtterSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Alligator+AlligatorSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Coyote+CoyoteSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Crab+CrabSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Bison+BisonSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Salmon+SalmonSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.MoonJellyfish+MoonJellyfishSpecies"
+                                  },
+                                  {
+                                    "type": "Type",
+                                    "value": "Eco.Mods.TechTree.Bass+BassSpecies"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "Comparison": "LessThanOrEqualTo",
+                          "Right": {
+                            "type": "GameValueWrapper",
+                            "value": 10.0
+                          }
+                        }
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Prevent_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Tiered Progression",
+          "UserDescription": "Only government to create skill books and contract boards ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.CreateWorkOrder"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CreateWorkOrder",
+                    "propNameBacker": "Currency",
+                    "propDisplayName": "Currency",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Economy.Currency"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CreateWorkOrder",
+                    "propNameBacker": "CraftedItem",
+                    "propDisplayName": "Crafted Item",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Product",
+                        "internalDescription": "<foldout><linktext><u>26 Products</u></linktext><title>26 Products</title><link=\"Item:AdvancedBakingSkillBook\"><style=\"Item\"><icon name=\"AdvancedBakingSkillBook\">Advanced Baking Skill Book</icon></style></link>\r\n<link=\"Item:AdvancedCookingSkillBook\"><style=\"Item\"><icon name=\"AdvancedCookingSkillBook\">Advanced Cooking Skill Book</icon></style></link>\r\n<link=\"Item:AdvancedMasonrySkillBook\"><style=\"Item\"><icon name=\"AdvancedMasonrySkillBook\">Advanced Masonry Skill Book</icon></style></link>\r\n<link=\"Item:AdvancedSmeltingSkillBook\"><style=\"Item\"><icon name=\"AdvancedSmeltingSkillBook\">Advanced Smelting Skill Book</icon></style></link>\r\n<link=\"Item:BakingSkillBook\"><style=\"Item\"><icon name=\"BakingSkillBook\">Baking Skill Book</icon></style></link>\r\n<link=\"Item:BasicEngineeringSkillBook\"><style=\"Item\"><icon name=\"BasicEngineeringSkillBook\">Basic Engineering Skill Book</icon></style></link>\r\n<link=\"Item:ButcherySkillBook\"><style=\"Item\"><icon name=\"ButcherySkillBook\">Butchery Skill Book</icon></style></link>\r\n<link=\"Item:CarpentrySkillBook\"><style=\"Item\"><icon name=\"CarpentrySkillBook\">Carpentry Skill Book</icon></style></link>\r\n<link=\"Item:CompositesSkillBook\"><style=\"Item\"><icon name=\"CompositesSkillBook\">Composites Skill Book</icon></style></link>\r\n<link=\"Item:ContractBoardItem\"><style=\"Item\"><icon name=\"ContractBoardItem\">Contract Board</icon></style></link>\r\n<link=\"Item:CookingSkillBook\"><style=\"Item\"><icon name=\"CookingSkillBook\">Cooking Skill Book</icon></style></link>\r\n<link=\"Item:CuttingEdgeCookingSkillBook\"><style=\"Item\"><icon name=\"CuttingEdgeCookingSkillBook\">Cutting Edge Cooking Skill Book</icon></style></link>\r\n<link=\"Item:ElectronicsSkillBook\"><style=\"Item\"><icon name=\"ElectronicsSkillBook\">Electronics Skill Book</icon></style></link>\r\n<link=\"Item:FarmingSkillBook\"><style=\"Item\"><icon name=\"FarmingSkillBook\">Farming Skill Book</icon></style></link>\r\n<link=\"Item:FertilizersSkillBook\"><style=\"Item\"><icon name=\"FertilizersSkillBook\">Fertilizers Skill Book</icon></style></link>\r\n<link=\"Item:FishingUnpluggedSkillBook\"><style=\"Item\"><icon name=\"FishingUnpluggedSkillBook\">Fishing Unplugged Skill Book</icon></style></link>\r\n<link=\"Item:GlassworkingSkillBook\"><style=\"Item\"><icon name=\"GlassworkingSkillBook\">Glassworking Skill Book</icon></style></link>\r\n<link=\"Item:IndustrySkillBook\"><style=\"Item\"><icon name=\"IndustrySkillBook\">Industry Skill Book</icon></style></link>\r\n<link=\"Item:MasonrySkillBook\"><style=\"Item\"><icon name=\"MasonrySkillBook\">Masonry Skill Book</icon></style></link>\r\n<link=\"Item:MechanicsSkillBook\"><style=\"Item\"><icon name=\"MechanicsSkillBook\">Mechanics Skill Book</icon></style></link>\r\n<link=\"Item:MillingSkillBook\"><style=\"Item\"><icon name=\"MillingSkillBook\">Milling Skill Book</icon></style></link>\r\n<link=\"Item:OilDrillingSkillBook\"><style=\"Item\"><icon name=\"OilDrillingSkillBook\">Oil Drilling Skill Book</icon></style></link>\r\n<link=\"Item:PaperMillingSkillBook\"><style=\"Item\"><icon name=\"PaperMillingSkillBook\">Paper Milling Skill Book</icon></style></link>\r\n<link=\"Item:PotterySkillBook\"><style=\"Item\"><icon name=\"PotterySkillBook\">Pottery Skill Book</icon></style></link>\r\n<link=\"Item:SmeltingSkillBook\"><style=\"Item\"><icon name=\"SmeltingSkillBook\">Smelting Skill Book</icon></style></link>\r\n<link=\"Item:TailoringSkillBook\"><style=\"Item\"><icon name=\"TailoringSkillBook\">Tailoring Skill Book</icon></style></link></foldout>",
+                        "entries": [
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.AdvancedSmeltingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.AdvancedBakingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MechanicsSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BasicEngineeringSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.IndustrySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.AdvancedMasonrySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.ElectronicsSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.FishingUnpluggedSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.CompositesSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.TailoringSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.CarpentrySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.FertilizersSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MasonrySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.BakingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.OilDrillingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.SmeltingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.AdvancedCookingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.ContractBoardItem"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.CuttingEdgeCookingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PaperMillingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.FarmingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.CookingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.GlassworkingSkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.PotterySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.ButcherySkillBook"
+                          },
+                          {
+                            "type": "Type",
+                            "value": "Eco.Mods.TechTree.MillingSkillBook"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CreateWorkOrder",
+                    "propNameBacker": "Byproduct",
+                    "propDisplayName": "Byproduct",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Product",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.CreateWorkOrder",
+                    "propNameBacker": "WorldObjectItem",
+                    "propDisplayName": "Crafting Table",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.Item"
+                        },
+                        "requiredTag": "Crafting Table",
+                        "internalDescription": "Any",
+                        "entries": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.DemographicRequirements",
+                        "properties": {
+                          "Demographics": {
+                            "type": "GamePickerList",
+                            "mustDeriveType": {
+                              "type": "Type",
+                              "value": "Eco.Gameplay.Civics.Demographics.Demographic"
+                            },
+                            "requiredTag": null,
+                            "internalDescription": "<link=\"view:4124:150569\"><icon name=\"Demographic\"><style=\"Government\">Government Old</style> <style=\"ErrorLight\">(removed)</style></icon></link>",
+                            "entries": [
+                              {
+                                "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+                                "name": "Government Old",
+                                "reference": true
+                              }
+                            ]
+                          },
+                          "Citizen": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who performed the interaction."
+                          },
+                          "Requirements": "HasNone"
+                        }
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Prevent_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Right to be forgotten",
+          "UserDescription": "Abandoned citizen's will be forgotten",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.DemographicChange"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.DemographicChange",
+                    "propNameBacker": "Demographic",
+                    "propDisplayName": "Demographic",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Civics.Demographics.Demographic"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "<link=\"view:4124:1334\"><icon name=\"Demographic\"><style=\"Government\">Abandoned</style></icon></link>",
+                        "entries": [
+                          {
+                            "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+                            "name": "Abandoned",
+                            "reference": true
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.IsNotAdmin",
+                        "properties": {
+                          "Citizen": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who changed demographics."
+                          }
+                        }
+                      },
+                      {
+                        "type": "GameValueContext",
+                        "_name": "EnteringDemographic",
+                        "markedUpName": "<icon name=\"DemographicChange\">Entering Demographic</icon>",
+                        "contextDescription": "Did The citizen become part of the demographic, or stop being part?"
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.TransferToAccount_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "SourceAccount": {
+                        "type": "Eco.Gameplay.Civics.GameValues.PersonalBankAccount_GameValue",
+                        "properties": {
+                          "User": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who changed demographics."
+                          }
+                        }
+                      },
+                      "TargetAccount": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+                          "name": "Treasury Bank Account",
+                          "reference": true
+                        }
+                      },
+                      "Currency": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.Currency",
+                          "name": "Goodies",
+                          "reference": true
+                        }
+                      },
+                      "Amount": {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.Wealth",
+                        "properties": {
+                          "Currency": {
+                            "type": "GameValueWrapper",
+                            "value": {
+                              "type": "Eco.Gameplay.Economy.Currency",
+                              "name": "Goodies",
+                              "reference": true
+                            }
+                          },
+                          "Citizen": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who changed demographics."
+                          }
+                        }
+                      },
+                      "PreventIfUnableToPay": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      },
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  },
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.ChangePropertyOwner_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "Property": {
+                        "type": "Eco.Gameplay.Civics.GameValues.PropertyValues.AllProperty",
+                        "reference": false,
+                        "properties": {
+                          "CurrentlyOwnedByCitizen": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who changed demographics."
+                          },
+                          "IgnorePropertyWithMulitpleOwners": true
+                        }
+                      },
+                      "NewOwner": null,
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "Eco.Gameplay.Civics.Laws.LawSection",
+        "reference": false,
+        "properties": {
+          "Title": "Littering fees",
+          "UserDescription": "Fine for dropping garbage and reward for picking up ",
+          "Triggers": [
+            {
+              "type": "Eco.Gameplay.Civics.Laws.TriggerSettings",
+              "reference": false,
+              "properties": {
+                "Trigger": {
+                  "type": "Type",
+                  "value": "Eco.Gameplay.GameActions.DropOrPickupBlock"
+                },
+                "Configs": [
+                  {
+                    "type": "Eco.Gameplay.GameActions.SelectTriggerConfig",
+                    "typeToConfig": "Eco.Gameplay.GameActions.DropOrPickupBlock",
+                    "propNameBacker": "ItemUsed",
+                    "propDisplayName": "Block Placed or Picked Up",
+                    "properties": {
+                      "List": {
+                        "type": "GamePickerList",
+                        "mustDeriveType": {
+                          "type": "Type",
+                          "value": "Eco.Gameplay.Items.BlockItem"
+                        },
+                        "requiredTag": null,
+                        "internalDescription": "<link=\"Item:GarbageItem\"><style=\"Item\"><icon name=\"GarbageItem\">Garbage</icon></style></link>",
+                        "entries": [
+                          {
+                            "type": "Type",
+                            "value": "GarbageItem"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "IfThenBlocks": [
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "GameValueContext",
+                        "_name": "PickedUp",
+                        "markedUpName": "<icon name=\"DropOrPickupBlock\">Picked Up</icon>",
+                        "contextDescription": "Was the block dropped or picked up?"
+                      },
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.OnUnownedLand",
+                        "properties": {}
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Pay_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "SourceBankAccount": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+                          "name": "Treasury Bank Account",
+                          "reference": true
+                        }
+                      },
+                      "TargetBankAccount": {
+                        "type": "Eco.Gameplay.Civics.GameValues.PersonalBankAccount_GameValue",
+                        "properties": {
+                          "User": {
+                            "type": "GameValueContext",
+                            "_name": "Citizen",
+                            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                            "contextDescription": "The citizen who performed the interaction."
+                          }
+                        }
+                      },
+                      "Target": {
+                        "type": "GameValueContext",
+                        "_name": "Citizen",
+                        "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                        "contextDescription": "The citizen who performed the interaction."
+                      },
+                      "Currency": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.Currency",
+                          "name": "Goodies",
+                          "reference": true
+                        }
+                      },
+                      "Amount": {
+                        "type": "GameValueWrapper",
+                        "value": 20.0
+                      },
+                      "PreventIfUnableToPay": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      },
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Eco.Gameplay.Civics.IfThenBlock",
+              "reference": false,
+              "properties": {
+                "If": {
+                  "type": "Eco.Gameplay.Civics.GameValues.SetOfConditions",
+                  "properties": {
+                    "List": [
+                      {
+                        "type": "GameValueContext",
+                        "_name": "Dropped",
+                        "markedUpName": "<icon name=\"DropOrPickupBlock\">Dropped</icon>",
+                        "contextDescription": "Was the block dropped or picked up?"
+                      },
+                      {
+                        "type": "Eco.Gameplay.Civics.GameValues.Values.OnUnownedLand",
+                        "properties": {}
+                      }
+                    ],
+                    "Comparison": "All"
+                  }
+                },
+                "Then": [
+                  {
+                    "type": "Eco.Gameplay.Civics.LegalActions.Tax_LegalAction",
+                    "reference": false,
+                    "properties": {
+                      "TargetBankAccount": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+                          "name": "Treasury Bank Account",
+                          "reference": true
+                        }
+                      },
+                      "Target": {
+                        "type": "GameValueContext",
+                        "_name": "Citizen",
+                        "markedUpName": "<icon name=\"User\">Citizen</icon>",
+                        "contextDescription": "The citizen who performed the interaction."
+                      },
+                      "Currency": {
+                        "type": "GameValueWrapper",
+                        "value": {
+                          "type": "Eco.Gameplay.Economy.Currency",
+                          "name": "Goodies",
+                          "reference": true
+                        }
+                      },
+                      "Amount": {
+                        "type": "GameValueWrapper",
+                        "value": 20.0
+                      },
+                      "PreventIfUnableToPay": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      },
+                      "InfoboxOnSuccess": {
+                        "type": "Eco.Gameplay.Civics.GameValues.No",
+                        "properties": {}
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
