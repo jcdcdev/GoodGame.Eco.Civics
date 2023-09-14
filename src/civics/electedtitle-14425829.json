@@ -1,0 +1,106 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Titles.ElectedTitle",
+  "name": "Mayor",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "ElectionProcess": {
+      "type": "Eco.Gameplay.Civics.ElectionProcess",
+      "name": "Basic Election",
+      "reference": true
+    },
+    "EligibleCandidates": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Everyone",
+      "reference": true
+    },
+    "RequiredOfCandidates": {
+      "type": "Eco.Gameplay.Civics.GameValues.Values.IsNotAdmin",
+      "properties": {
+        "Citizen": {
+          "type": "GameValueContext",
+          "_name": "Citizen",
+          "markedUpName": "<icon name=\"User\">Citizen</icon>",
+          "contextDescription": "The candidate or office holder."
+        }
+      }
+    },
+    "MaxOccupants": 1,
+    "Successor": null,
+    "WhoCanRemoveFromOffice": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Admins",
+      "reference": true
+    },
+    "TermLimitDays": 14.0,
+    "TotalTermsAllowed": 2,
+    "ConsecutiveTermsAllowed": 1,
+    "CanElectionsBeProposedDuringTerm": true,
+    "CanSetGlobalMarkers": true,
+    "CanSetGlobalObjective": true,
+    "CanSetTreasuryTaxes": true,
+    "CanUseTreasuryBankAccount": true,
+    "HasGovernmentBankingPrivileges": true,
+    "RequiredOfOfficeHolders": {
+      "type": "Eco.Gameplay.Civics.GameValues.Values.DemographicRequirements",
+      "properties": {
+        "Demographics": {
+          "type": "GamePickerList",
+          "mustDeriveType": {
+            "type": "Type",
+            "value": "Eco.Gameplay.Civics.Demographics.Demographic"
+          },
+          "requiredTag": null,
+          "internalDescription": "<link=\"view:4124:1333\"><icon name=\"Demographic\"><style=\"Government\">Active</style></icon></link>",
+          "entries": [
+            {
+              "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+              "name": "Active",
+              "reference": true
+            }
+          ]
+        },
+        "Citizen": {
+          "type": "GameValueContext",
+          "_name": "Citizen",
+          "markedUpName": "<icon name=\"User\">Citizen</icon>",
+          "contextDescription": "The candidate or office holder."
+        },
+        "Requirements": "HasAll"
+      }
+    },
+    "BackupOwner": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Everyone",
+      "reference": true
+    },
+    "Wages": {
+      "type": "Eco.Gameplay.Economy.Jobs.RecurringTransferDefinition",
+      "reference": false,
+      "properties": {
+        "Currency": {
+          "type": "GameValueWrapper",
+          "value": {
+            "type": "Eco.Gameplay.Economy.Currency",
+            "name": "Goodies",
+            "reference": true
+          }
+        },
+        "AmountPerHour": {
+          "type": "GameValueWrapper",
+          "value": 2.0
+        },
+        "PaymentType": "OnlineHours"
+      }
+    },
+    "WagesSourceBankAccount": {
+      "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+      "name": "Treasury Bank Account",
+      "reference": true
+    }
+  }
+}
