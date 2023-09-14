@@ -1,0 +1,40 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+  "name": "Admins",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "BackupOwner": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Everyone",
+      "reference": true
+    },
+    "Conditions": [
+      {
+        "type": "Eco.Gameplay.Civics.GameValues.Values.IsAdmin",
+        "properties": {
+          "Citizen": {
+            "type": "GameValueContext",
+            "_name": "Citizen",
+            "markedUpName": "Citizen",
+            "contextDescription": "The citizen being checked for this demographic."
+          }
+        }
+      }
+    ],
+    "Wages": {
+      "type": "Eco.Gameplay.Economy.Jobs.RecurringTransferDefinition",
+      "reference": false,
+      "properties": {
+        "Currency": null,
+        "AmountPerHour": null,
+        "PaymentType": "OnlineAndOfflineHours"
+      }
+    },
+    "WagesSourceBankAccount": null
+  }
+}
