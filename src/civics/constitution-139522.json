@@ -1,0 +1,65 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Constitution",
+  "name": "Constitution",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "Articles": [
+      {
+        "type": "Eco.Gameplay.Civics.CivicArticle",
+        "name": "Constitution - All Other Privileges",
+        "reference": false,
+        "description": null,
+        "properties": {
+          "AppliesTo": {
+            "type": "Eco.Gameplay.Civics.Constitutional.CivicConditionAllOtherCivicAbilities",
+            "reference": false,
+            "properties": {}
+          },
+          "Proposers": {
+            "type": "GamePickerList",
+            "mustDeriveType": {
+              "type": "Type",
+              "value": "Eco.Gameplay.Aliases.IAlias"
+            },
+            "requiredTag": null,
+            "internalDescription": "<link=\"view:4124:139\"><icon name=\"Demographic\"><style=\"Government\">Everyone</style></icon></link>",
+            "entries": [
+              {
+                "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+                "name": "Everyone",
+                "reference": true
+              }
+            ]
+          },
+          "Executors": {
+            "type": "GamePickerList",
+            "mustDeriveType": {
+              "type": "Type",
+              "value": "Eco.Gameplay.Aliases.IAlias"
+            },
+            "requiredTag": null,
+            "internalDescription": "<link=\"view:4124:138\"><icon name=\"Demographic\"><style=\"Government\">Admins</style></icon></link>",
+            "entries": [
+              {
+                "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+                "name": "Admins",
+                "reference": true
+              }
+            ]
+          },
+          "ElectionProcess": {
+            "type": "Eco.Gameplay.Civics.ElectionProcess",
+            "name": "Basic Election",
+            "reference": true
+          },
+          "Priority": 0.0
+        }
+      }
+    ]
+  }
+}
