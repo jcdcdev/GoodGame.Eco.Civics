@@ -17,6 +17,7 @@ jobs:
             exit 1
           fi
   determine-version:
+    needs: check-branch
     runs-on: ubuntu-latest
     outputs:
       semVer: ${{ steps.gitversion.outputs.semVer }}
