@@ -1,0 +1,78 @@
+{
+  "version": [
+    1,
+    0
+  ],
+  "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+  "name": "Farmer & Hunter Wage",
+  "reference": false,
+  "description": null,
+  "properties": {
+    "BackupOwner": {
+      "type": "Eco.Gameplay.Civics.Demographics.Demographic",
+      "name": "Admins",
+      "reference": true
+    },
+    "Conditions": [
+      {
+        "type": "Eco.Gameplay.Civics.GameValues.Values.SkillRequirements",
+        "properties": {
+          "Citizen": {
+            "type": "GameValueContext",
+            "_name": "Citizen",
+            "markedUpName": "<icon name=\"User\">Citizen</icon>",
+            "contextDescription": "The citizen being checked for this demographic."
+          },
+          "Skills": {
+            "type": "GamePickerList",
+            "mustDeriveType": {
+              "type": "Type",
+              "value": "Eco.Gameplay.Skills.Skill"
+            },
+            "requiredTag": null,
+            "internalDescription": "<link=\"Item:FarmingSkill\"><style=\"Item\"><icon name=\"FarmingSkill\">Farming</icon></style></link>  <link=\"Item:HuntingSkill\"><style=\"Item\"><icon name=\"HuntingSkill\">Hunting</icon></style></link>",
+            "entries": [
+              {
+                "type": "Type",
+                "value": "Eco.Mods.TechTree.HuntingSkill"
+              },
+              {
+                "type": "Type",
+                "value": "Eco.Mods.TechTree.FarmingSkill"
+              }
+            ]
+          },
+          "Requirements": "HasAny",
+          "RequiredLevel": {
+            "type": "GameValueWrapper",
+            "value": 1.0
+          }
+        }
+      }
+    ],
+    "Wages": {
+      "type": "Eco.Gameplay.Economy.Jobs.RecurringTransferDefinition",
+      "reference": false,
+      "properties": {
+        "Currency": {
+          "type": "GameValueWrapper",
+          "value": {
+            "type": "Eco.Gameplay.Economy.Currency",
+            "name": "Goodies",
+            "reference": true
+          }
+        },
+        "AmountPerHour": {
+          "type": "GameValueWrapper",
+          "value": 2.0
+        },
+        "PaymentType": "OnlineHours"
+      }
+    },
+    "WagesSourceBankAccount": {
+      "type": "Eco.Gameplay.Economy.TreasuryBankAccount",
+      "name": "Treasury Bank Account",
+      "reference": true
+    }
+  }
+}
