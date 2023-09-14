@@ -29,7 +29,7 @@ jobs:
     env:
       SEMVER: ${{ needs.determine-version.outputs.semVer }}
       ASSET_NAME: GoodGame.Eco.Civics-${{ needs.determine-version.outputs.semVer }}
-      BUNDLE_PATH: ./src/bundle.json
+      BUNDLE_PATH: ./src/civics.json
       ARTIFACT_OUTPUT: ./build-assets
     outputs:
       assetName: ${{ env.ASSET_NAME }}
@@ -70,7 +70,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '/^\+semver:\s?(breaking|major|feature|minor|fix|patch)$|^\+changelog-ignore:.*$/'
+          filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*)'
           custom-emoji: 'feature🌟'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
