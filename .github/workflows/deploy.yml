@@ -81,7 +81,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filter-author: (jcdcdev|dependabot|renovate\\[bot\\]|dependabot\\[bot\\]|Renovate Bot)
-          filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*)'
+          filter: '(\+semver:\s?(breaking|major|feature|minor|fix|patch)|\+changelog-ignore:.*|Merge.*)'
           custom-emoji: 'feature🌟,demographic👥,districtmap🗺️,electedtitle👑,electionprocess🗳️,constitution📜,govaccount🏦,law⚖️'
       - name: Get the changelog
         run: echo "${{ steps.changelog.outputs.changelog }}"
