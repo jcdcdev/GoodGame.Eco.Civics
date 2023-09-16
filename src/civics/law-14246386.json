@@ -695,11 +695,11 @@
                         "entries": [
                           {
                             "type": "Type",
-                            "value": "Eco.Mods.TechTree.StoneRoadItem"
+                            "value": "StoneRampItem"
                           },
                           {
                             "type": "Type",
-                            "value": "StoneRampItem"
+                            "value": "Eco.Mods.TechTree.StoneRoadItem"
                           }
                         ]
                       }

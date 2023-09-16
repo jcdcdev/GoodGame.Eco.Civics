@@ -34,11 +34,11 @@
             "entries": [
               {
                 "type": "Type",
-                "value": "Eco.Mods.TechTree.HuntingSkill"
+                "value": "Eco.Mods.TechTree.FarmingSkill"
               },
               {
                 "type": "Type",
-                "value": "Eco.Mods.TechTree.FarmingSkill"
+                "value": "Eco.Mods.TechTree.HuntingSkill"
               }
             ]
           },
